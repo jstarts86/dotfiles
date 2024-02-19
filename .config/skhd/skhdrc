@@ -10,12 +10,13 @@ alt - p : yabai -m window --focus prev
 alt - s : yabai -m display --focus west
 alt - g : yabai -m display --focus east
 
+hyper - delete : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 # === launch commands ===
 # open kitty terminal, blazingly fast compared to iTerm/Hyper
 #hyper - return : /Applications/iTerm.app --single-instance -d ~
 # open firefox
-#cmd + shift - return : open -na /Applications/Firefox Developer Edition.app
-
+ctrl + alt - return : open -na /Applications/'Firefox Developer Edition.app'
+alt - return : open -na /Applications/iTerm.app
 # rotate layout clockwise
 alt + shift + ctrl - r : yabai -m space --rotate 270
 
