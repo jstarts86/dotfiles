@@ -16,10 +16,10 @@ hyper - delete : $(yabai -m window $(yabai -m query --windows --window | jq -re 
 #hyper - return : /Applications/iTerm.app --single-instance -d ~
 # open firefox
 ctrl + alt - return : open -na /Applications/'Firefox Developer Edition.app'
-alt - return : open -na /Applications/iTerm.app
+alt - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
+
 # rotate layout clockwise
 alt + shift + ctrl - r : yabai -m space --rotate 270
-
 # flip along y-axis
 alt + shift + ctrl - y : yabai -m space --mirror y-axis
 
