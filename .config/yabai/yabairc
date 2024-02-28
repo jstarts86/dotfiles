@@ -9,13 +9,14 @@ yabai -m config layout bsp
 
 yabai -m config window_placement second_child
 
-yabai -m space 1 --label Code
-yabai -m space 2 --label CodeAssistance
-yabai -m space 3 --label DevSearch
-yabai -m space 4 --label School
-yabai -m space 5 --label Notes
-yabai -m space 6 --label Personal
-yabai -m space 7 --label PersanalApps
+yabai -m space 1 --label "Code"
+yabai -m space 2 --label "CodeAssistance"
+yabai -m space 3 --label "DevSearch"
+yabai -m space 4 --label "School"
+yabai -m space 5 --label "Notes"
+yabai -m space 6 --label "School Work"
+yabai -m space 7 --label "PersonalWeb"
+yabai -m space 8 --label "SocialMedia"
 
 # padding set to 12px
 yabai -m config top_padding 5
@@ -55,7 +56,7 @@ yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.9
 
 # add 20 padding to the top and 0 padding to the bottom of every space located on the main display
-yabai -m config external_bar main:20:0
+yabai -m config external_bar main:32:0
 
 
 yabai -m config debug_output on
