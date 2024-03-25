@@ -97,6 +97,9 @@ alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
 alias lvim="NVIM_APPNAME=LazyNvim nvim"
 
 
+export LUA_CPATH=";;${HOME}/.luarocks/lib/lua/5.1/?.so"
+export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share/lua/5.1/?/init.lua"
+
 function nvims() {
     items=("default" "LazyNvim" )
     config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
@@ -139,7 +142,6 @@ bindkey -s ^a "nvims\n"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 alias vim=lvim
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias config='/usr/bin/git --git-dir=/Users/john/.cfg/ --work-tree=/Users/john'
 alias ls="eza"
 alias ll="eza -alh"
 alias tree="eza --tree"
@@ -159,3 +161,21 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="$HOME/.luaenv/bin:$PATH"
+eval "$(luaenv init -)"
