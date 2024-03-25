@@ -56,7 +56,7 @@ yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.9
 
 # add 20 padding to the top and 0 padding to the bottom of every space located on the main display
-yabai -m config external_bar main:32:0
+yabai -m config external_bar all:32:0
 
 
 yabai -m config debug_output on

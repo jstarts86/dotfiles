@@ -245,7 +245,7 @@ function icon_map() {
     icon_result=":click_up:"
     ;;
   "Arc")
-    icon_result=":arc:"
+    icon_result=":min_browser:"
     ;;
   "Zeplin")
     icon_result=":zeplin:"

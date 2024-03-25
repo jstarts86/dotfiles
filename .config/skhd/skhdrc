@@ -7,8 +7,8 @@ alt - n : yabai -m window --focus next
 alt - p : yabai -m window --focus prev
 
 #change focus between external displays (left and right)
-alt - s : yabai -m display --focus east
-alt - g : yabai -m display --focus west
+alt - g : yabai -m display --focus east
+alt - s : yabai -m display --focus west
 
 hyper - delete : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 # === launch commands ===
