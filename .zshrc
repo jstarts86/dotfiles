@@ -177,5 +177,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+kitty-reload() {
+    kill -SIGUSR1 $(pidof kitty)
+}
 export PATH="$HOME/.luaenv/bin:$PATH"
 eval "$(luaenv init -)"
