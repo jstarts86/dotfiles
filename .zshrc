@@ -95,7 +95,7 @@ export PATH="$HOME/.local/bin":$PATH
 alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
 
 alias lvim="NVIM_APPNAME=LazyNvim nvim"
-
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export LUA_CPATH=";;${HOME}/.luarocks/lib/lua/5.1/?.so"
 export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share/lua/5.1/?/init.lua"
@@ -183,3 +183,7 @@ kitty-reload() {
 }
 export PATH="$HOME/.luaenv/bin:$PATH"
 eval "$(luaenv init -)"
+
+PATH=~/.console-ninja/.bin:$PATH
+export PATH="/opt/homebrew/opt/flex/bin:$PATH"
+export PATH="/opt/homebrew/opt/bison/bin:$PATH"

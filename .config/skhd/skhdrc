@@ -13,11 +13,11 @@ alt - s : yabai -m display --focus west
 hyper - delete : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 # === launch commands ===
 # open kitty terminal, blazingly fast compared to iTerm/Hyper
-#hyper - return : /Applications/iTerm.app --single-instance -d ~
+# hyper - return : /Applications/iTerm.app --single-instance -d ~
 # open firefox
 ctrl + alt - return : open -na /Applications/'Firefox Developer Edition.app'
-alt - return : open -na /Applications/'kitty.app'
-#alt - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
+# alt - return : open -na /Applications/'kitty.app'
+alt - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
 
 # rotate layout clockwise
 alt + shift + ctrl - r : yabai -m space --rotate 270
@@ -28,7 +28,10 @@ alt + shift + ctrl - y : yabai -m space --mirror y-axis
 alt + shift + ctrl - x : yabai -m space --mirror x-axis
 
 # toggle window float
-alt + shift + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+alt + shift + ctrl - f : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# toggle sticky window
+hyper - f: yabai -m window --toggle sticky
 
 # maximize a window
 alt + shift + ctrl - m : yabai -m window --toggle zoom-fullscreen
@@ -57,6 +60,15 @@ alt + shift + ctrl - right : yabai -m window --space next
 # move window to display left and right
 alt + shift + ctrl - s : yabai -m window --display west yabai -m display --focus west
 alt + shift + ctrl - g : yabai -m window --display east yabai -m display --focus east
+
+# Move space right/left
+hyper - left: yabai -m space --move prev
+hyper - right: yabai -m space --move next
+
+# Send space to display 2 (by display arrangement index)
+hyper - s: yabai -m space --display 1
+hyper - g: yabai -m space --display 2
+
 # move window to space #
 alt + shift + ctrl - 1 : yabai -m window --space 1
 alt + shift + ctrl - 2 : yabai -m window --space 2
