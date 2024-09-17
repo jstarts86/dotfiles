@@ -79,6 +79,7 @@ alt + shift + ctrl - 6 : yabai -m window --space 6
 alt + shift + ctrl - 7 : yabai -m window --space 7
 alt + shift + ctrl - 8 : yabai -m window --space 8
 alt + shift + ctrl - 9 : yabai -m window --space 9
+alt + shift + ctrl - 0 : yabai -m window --space 0
 
 hyper - p : yabai -m space --toggle padding; \
 	  yabai -m space --toggle gap; \
@@ -86,6 +87,7 @@ hyper - p : yabai -m space --toggle padding; \
 
 ctrl - right : yabai -m space --focus next || yabai -m space --focus first
 ctrl - left : yabai -m space --focus prev || yabai -m space --focus last
+
 hyper - tab : yabai -m space --focus recent
 ctrl - 1 : yabai -m space --focus 1
 ctrl - 2 : yabai -m space --focus 2
@@ -96,18 +98,20 @@ ctrl - 6 : yabai -m space --focus 6
 ctrl - 7 : yabai -m space --focus 7
 ctrl - 8 : yabai -m space --focus 8
 ctrl - 9 : yabai -m space --focus 9
+ctrl - 0 : yabai -m space --focus 0
+
 # increase window size
-alt + shift + ctrl - a : yabai -m window --resize left:-20:0
-alt + shift + ctrl - q : yabai -m window --resize bottom:0:20
-alt + shift + ctrl - o : yabai -m window --resize top:0:-20
-alt + shift + ctrl - e : yabai -m window --resize right:20:0
+# alt + shift + ctrl - a : yabai -m window --resize left:-20:0
+# alt + shift + ctrl - s : yabai -m window --resize bottom:0:20
+# alt + shift + ctrl - w : yabai -m window --resize top:0:-20
+# alt + shift + ctrl - d : yabai -m window --resize right:20:0
 
 
 
 # decrease window size
-hyper - a : yabai -m window --resize left:20:0
-hyper - q : yabai -m window --resize bottom:0:-20
-hyper - o : yabai -m window --resize top:0:20
-hyper - e : yabai -m window --resize right:-20:0
+# hyper - a : yabai -m window --resize left:-20:0
+# hyper - s : yabai -m window --resize bottom:0:20
+# hyper - w : yabai -m window --resize top:0:-20
+# hyper - d : yabai -m window --resize right:20:0
 
 

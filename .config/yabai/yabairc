@@ -1,5 +1,6 @@
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
+#
 
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
@@ -9,14 +10,15 @@ yabai -m config layout bsp
 
 yabai -m config window_placement second_child
 
-yabai -m space 1 --label "Code"
-yabai -m space 2 --label "CodeAssistance"
-yabai -m space 3 --label "DevSearch"
-yabai -m space 4 --label "School"
-yabai -m space 5 --label "Notes"
-yabai -m space 6 --label "School Work"
-yabai -m space 7 --label "PersonalWeb"
-yabai -m space 8 --label "SocialMedia"
+yabai -m space 1 --label "Personal Browser"
+yabai -m space 2 --label "Notes"
+yabai -m space 3 --label "School"
+yabai -m space 4 --label "Code"
+yabai -m space 5 --label "Code Assistent"
+yabai -m space 6 --label "ChatGPT"
+yabai -m space 7 --label "Personal"
+yabai -m space 8 --label "Notion"
+yabai -m space 9 --label "Plane"
 
 # padding set to 12px
 yabai -m config top_padding 10
@@ -67,4 +69,6 @@ tail -f /tmp/yabai_$USER.err.log
 # view the last lines of the debug log
 tail -f /tmp/yabai_$USER.out.log
 
+# borders active_color=0xc0e2e2e3 inactive_color=0xc02c2e34 width=5.0 blur_radius=25 background_color=0x302c2e34 &
+	
 

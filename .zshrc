@@ -146,6 +146,7 @@ alias ls="eza"
 alias ll="eza -alh"
 alias tree="eza --tree"
 alias gcane="git commit --amend --no-edit"
+alias cat="bat"
 
 
 
@@ -181,8 +182,8 @@ unset __conda_setup
 kitty-reload() {
     kill -SIGUSR1 $(pidof kitty)
 }
-export PATH="$HOME/.luaenv/bin:$PATH"
-eval "$(luaenv init -)"
+# export PATH="$HOME/.luaenv/bin:$PATH"
+# eval "$(luaenv init -)"
 
 PATH=~/.console-ninja/.bin:$PATH
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"
