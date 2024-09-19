@@ -1,0 +1,16 @@
+{
+    "description": "Change . and / to left_control when held simultaneously",
+    "manipulators": [
+        {
+            "from": {
+                "modifiers": { "optional": ["any"] },
+                "simultaneous": [
+                    { "key_code": "period" },
+                    { "key_code": "slash" }
+                ]
+            },
+            "to": [{ "key_code": "left_control" }],
+            "type": "basic"
+        }
+    ]
+}
