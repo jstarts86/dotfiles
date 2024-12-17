@@ -188,3 +188,4 @@ kitty-reload() {
 PATH=~/.console-ninja/.bin:$PATH
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
+export PATH=$HOME/development/flutter/bin:$PATH
