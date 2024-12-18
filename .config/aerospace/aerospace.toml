@@ -114,29 +114,31 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
 alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
 alt-e = 'workspace E'
-alt-f = 'workspace F'
+# alt-f = 'workspace F'
 alt-g = 'workspace G'
 alt-i = 'workspace I'
 alt-m = 'workspace M'
 alt-n = 'workspace N'
 alt-o = 'workspace O'
 alt-p = 'workspace P'
-alt-q = 'workspace Q'
+# alt-q = 'workspace Q'
 alt-r = 'workspace R'
 alt-s = 'workspace S'
 alt-t = 'workspace T'
-alt-u = 'workspace U'
-alt-v = 'workspace V'
-alt-w = 'workspace W'
-alt-x = 'workspace X'
-alt-y = 'workspace Y'
+# alt-u = 'workspace U'
+# alt-v = 'workspace V'
+# alt-w = 'workspace W'
+# alt-x = 'workspace X'
+# alt-y = 'workspace Y'
 alt-z = 'workspace Z'
 
+alt-f = ['fullscreen', 'mode main'] # Toggle between floating and tiling layout
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-ctrl-1 = 'move-node-to-workspace 1'
 alt-shift-ctrl-2 = 'move-node-to-workspace 2'
@@ -147,12 +149,19 @@ alt-shift-ctrl-6 = 'move-node-to-workspace 6'
 alt-shift-ctrl-7 = 'move-node-to-workspace 7'
 alt-shift-ctrl-8 = 'move-node-to-workspace 8'
 alt-shift-ctrl-9 = 'move-node-to-workspace 9'
+alt-shift-ctrl-0 = 'move-node-to-workspace 10'
 alt-shift-ctrl-a = 'move-node-to-workspace A'
 alt-shift-ctrl-b = 'move-node-to-workspace B'
-alt-shift-ctrl-c = 'move-node-to-workspace C'
+# alt-shift-ctrl-c = 'move-node-to-workspace C'
 alt-shift-ctrl-e = 'move-node-to-workspace E'
-alt-shift-ctrl-f = 'move-node-to-workspace F'
+alt-shift-ctrl-g = 'move-node-to-workspace G'
+# alt-shift-ctrl-f = 'move-node-to-workspace F'
 alt-shift-ctrl-m = 'move-node-to-workspace M'
+alt-shift-ctrl-n = 'move-node-to-workspace N'
+alt-shift-ctrl-s = 'move-node-to-workspace S'
+alt-shift-ctrl-t = 'move-node-to-workspace T'
+alt-shift-ctrl-z = 'move-node-to-workspace Z'
+alt-shift-ctrl-r = 'move-node-to-workspace R'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -162,6 +171,21 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
+[[on-window-detected]]
+if.app-id = "org.zotero.zotero"
+run = 'move-node-to-workspace R'
+
+[[on-window-detected]]
+if.app-id = "io.zsa.keymapp"
+run = 'move-node-to-workspace Z'
+
+[[on-window-detected]]
+if.app-id = "notion.id"
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = "com.openai.chat"
+run = 'move-node-to-workspace G'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -169,6 +193,7 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+shift-f = ['fullscreen', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
