@@ -186,6 +186,10 @@ run = 'move-node-to-workspace N'
 [[on-window-detected]]
 if.app-id = "com.openai.chat"
 run = 'move-node-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = "com.kakao.KakaoTalkMac"
+run = 'move-node-to-workspace M'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
