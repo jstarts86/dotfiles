@@ -87,32 +87,32 @@ plugins=(
 
 
 )
-export EDITOR='nvim'
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin":$PATH
 
-alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
+# alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
 
-alias lvim="NVIM_APPNAME=LazyNvim nvim"
+# alias lvim="NVIM_APPNAME=LazyNvim nvim"
+export EDITOR='nvim'
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export LUA_CPATH=";;${HOME}/.luarocks/lib/lua/5.1/?.so"
 export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share/lua/5.1/?/init.lua"
 
-function nvims() {
-    items=("default" "LazyNvim" )
-    config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
+# function nvims() {
+#     items=("default" "LazyNvim" )
+#     config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+#   if [[ -z $config ]]; then
+#     echo "Nothing selected"
+#     return 0
+#   elif [[ $config == "default" ]]; then
+#     config=""
+#   fi
+#   NVIM_APPNAME=$config nvim $@
+# }
 
-bindkey -s ^a "nvims\n"
+# bindkey -s ^a "nvims\n"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -140,7 +140,7 @@ bindkey -s ^a "nvims\n"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-alias vim=lvim
+alias vim=nvim
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias ls="eza"
 alias ll="eza -alh"
@@ -190,6 +190,7 @@ export PATH="/opt/homebrew/opt/flex/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH=$HOME/development/flutter/bin:$PATH
 
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -198,3 +199,14 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+export PATH=$PATH:/nix/var/nix/profiles/default/bin/
+
+export PGDATA=/opt/homebrew/var/postgresql@17
+export PATH="/opt/homebrew/Cellar/postgresql@17/17.2/bin/:$PATH"
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+eval "$(rbenv init -)"
