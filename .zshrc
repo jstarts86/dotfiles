@@ -209,4 +209,4 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nix
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
