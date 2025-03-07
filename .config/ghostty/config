@@ -1,0 +1,17 @@
+theme = rose-pine
+cursor-color = #f312db
+# cursor-invert-fg-bg = true
+macos-titlebar-style = hidden
+bold-is-bright = true
+background-opacity = 1
+background = #151515
+# window-decoration = false
+
+# cursor-color = #FFA500
+# font-feature = +liga
+cursor-style = block
+
+
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
