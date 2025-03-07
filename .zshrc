@@ -201,6 +201,8 @@ function y() {
 }
 export PATH=$PATH:/nix/var/nix/profiles/default/bin/
 
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 export PGDATA=/opt/homebrew/var/postgresql@17
 export PATH="/opt/homebrew/Cellar/postgresql@17/17.2/bin/:$PATH"
 # Nix
@@ -209,3 +211,8 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nix
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+# eval "$(rbenv init -)"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export JAVA_HOME=/Users/john/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
+export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
