@@ -214,11 +214,12 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # eval "$(rbenv init -)"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export JAVA_HOME=/Users/john/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
+# export JAVA_HOME=/Users/john/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
 export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
 
+bindkey -v
 
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 
 export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 # eval "$(rbenv init -)"
