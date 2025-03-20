@@ -1,3 +1,4 @@
+# ZSH_DISABLE_COMPFIX=true
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -219,7 +220,7 @@ export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
 
 bindkey -v
 
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 # eval "$(rbenv init -)"
@@ -228,3 +229,4 @@ export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 # export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
 bindkey -v
+# export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
