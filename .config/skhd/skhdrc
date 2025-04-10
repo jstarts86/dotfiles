@@ -1,0 +1,3 @@
+ctrl + shift + alt - p : pbpaste | pandoc --from=markdown+tex_math_single_backslash --to=markdown+tex_math_dollars --wrap=preserve | awk 'NF > 0' | pbcopy
+
+

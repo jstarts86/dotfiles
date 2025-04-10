@@ -195,7 +195,7 @@ run = 'move-node-to-workspace M'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [workspace-to-monitor-force-assignment]
 
-M = ['(1)', 'secondary', 'main']
+M = [ 'main','(1)', 'secondary']
 
 11 = ['(1)', 'secondary', 'main']
 6 = ['Sidecar', 'main']
