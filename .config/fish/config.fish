@@ -244,8 +244,3 @@ end
 # echo "Welcome to Fish! Your config.fish is loaded."
 
 # Consider using Fisher for managing Fish plugins: https://github.com/jorgebucaran/fisher
-fisher install jorgebucaran/fisher
-fisher install IlanCosman/tide # Theme
-fisher install jorgebucaran/nvm.fish
-fisher install jethrokuan/z # Zoxide alternative, or use zoxide init fish
-fisher install PatrickF1/fzf.fish # Enhanced FZF integration

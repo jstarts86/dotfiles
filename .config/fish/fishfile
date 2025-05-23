@@ -1,0 +1,4 @@
+fisher install IlanCosman/tide # Theme
+fisher install jorgebucaran/nvm.fish
+fisher install jethrokuan/z # Zoxide alternative, or use zoxide init fish
+fisher install PatrickF1/fzf.fish # Enhanced FZF integration
