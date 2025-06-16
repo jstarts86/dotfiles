@@ -198,7 +198,19 @@ end
 # if command -v luaenv > /dev/null
 #   status --is-interactive; and luaenv init -fish | source
 # end
-
+if status --is-interactive
+    # Check if the TMUX environment variable is NOT set (meaning we're not already in tmux)
+    # and if the tmux command is available
+    if not set -q TMUX; and command -v tmux >/dev/null
+        # Start a new tmux session or attach to an existing one.
+        # -A: If a session with the given name exists, attach to it. Otherwise, create it.
+        # -s main: Names the session "main". You can choose any name.
+        # If you want tmux to take over the current shell process (so when tmux exits, the terminal closes):
+        # exec tmux new-session -A -s main
+        # If you want to fall back to the fish shell if tmux exits:
+        tmux new-session -A -s main
+    end
+end
 
 # Nix Environment
 # The Zsh script likely sets environment variables.
@@ -244,3 +256,4 @@ end
 # echo "Welcome to Fish! Your config.fish is loaded."
 
 # Consider using Fisher for managing Fish plugins: https://github.com/jorgebucaran/fisher
+zoxide init fish | source

@@ -1,9 +1,9 @@
-theme = dark:rose-pine,light:rose-pine-dawn
+theme = dark:rose-pine,light:rose-pine
 cursor-color = #f312db
 # cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 bold-is-bright = true
-background-opacity = .8
+background-opacity = 1
 background-blur = true
 # background = #151515
 # window-decoration = false

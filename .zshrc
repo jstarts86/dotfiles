@@ -2,16 +2,21 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -73,17 +78,18 @@
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(
-#     git
-#     zsh-autosuggestions
-#     zsh-syntax-highlighting
-#     tmux
-#     nvm
-#
-#
-#
-# )
-# ZSH_TMUX_AUTOSTART=true
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    tmux
+    nvm
+
+
+
+)
+ZSH_TMUX_AUTOSTART=true
+source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin":$PATH
 
 # alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
@@ -148,8 +154,8 @@ alias cat="bat"
 eval "$(zoxide init --cmd cd zsh)"
 # Load Angular CLI autocompletion.
 
-# NG_COMMANDS="add build config doc e2e generate help lint new run serve test update version xi18n"
-# complete -W "$NG_COMMANDS" ng
+NG_COMMANDS="add build config doc e2e generate help lint new run serve test update version xi18n"
+complete -W "$NG_COMMANDS" ng
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -180,7 +186,7 @@ kitty-reload() {
 # export PATH="$HOME/.luaenv/bin:$PATH"
 # eval "$(luaenv init -)"
 
-PATH=~/.console-ninja/.bin:$PATH
+
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH=$HOME/development/flutter/bin:$PATH
@@ -209,17 +215,21 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # eval "$(rbenv init -)"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 # export JAVA_HOME=/Users/john/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
 export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
 
 bindkey -v
 
-export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
+# Set JAVA_HOME to Amazon Corretto 22
+export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/development/jextract-22/bin:$PATH"
 
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 # eval "$(rbenv init -)"
 # export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 # export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
 bindkey -v
@@ -261,4 +271,11 @@ bindkey '^f' fzf-cd-home-widget
 # Optional: Bind another key, e.g., Alt+f (^[f) if Ctrl+f conflicts
 # bindkey '^[f' fzf-cd-home-widget
 # ------------------------------------------------------------------------------
+
+export PATH="$PATH:/Users/john/Library/Application Support/Coursier/bin"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/john/.dart-cli-completion/zsh-config.zsh ]] && . /Users/john/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
 
