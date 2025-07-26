@@ -94,6 +94,7 @@ export PATH="$HOME/.local/bin":$PATH
 
 # alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
 
+export PATH="/opt/homebrew/bin:$PATH"
 # alias lvim="NVIM_APPNAME=LazyNvim nvim"
 export EDITOR='nvim'
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

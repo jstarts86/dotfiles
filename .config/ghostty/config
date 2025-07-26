@@ -6,7 +6,8 @@ bold-is-bright = true
 background-opacity = .8
 background-blur = true
 background = #000000
-font-family = "JetBrainsMonoNL Nerd Font Mono"
+font-family = "JetBrainsMonoNL NFM"
+font-feature = -calt, -liga, -dlig
 # window-decoration = false
 
 # cursor-color = #FFA500
