@@ -1,3 +1,3 @@
 ctrl + shift + alt - p : pbpaste | pandoc --from=markdown+tex_math_single_backslash --to=markdown+tex_math_dollars --wrap=preserve | awk 'NF > 0' | pbcopy
-
-
+ctrl + shift + alt - o : pbpaste | LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pandoc -f markdown+tex_math_single_backslash -t markdown+tex_math_dollars --wrap=preserve | sed -E 's/\\[[:space:]]*$/  /' | awk 'NF > 0' | pbcopy
+ctrl + shift + alt - i : pbpaste | perl -CS -0777 -pe 's/\\\[(.*?)\\\]/\$\$\n$1\n\$\$/gs; s/\\\((.*?)\\\)/\$$1\$/gs' | pbcopy

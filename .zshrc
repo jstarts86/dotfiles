@@ -2,9 +2,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -88,6 +88,8 @@ plugins=(
 
 
 )
+- 
+# eval "$(direnv hook zsh)"
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin":$PATH
@@ -165,20 +167,6 @@ eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 
 kitty-reload() {
@@ -222,12 +210,18 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
 
 bindkey -v
-
+export PATH="$HOME/.atuin/bin:$PATH"
 # Set JAVA_HOME to Amazon Corretto 22
+#
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
 export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/development/jextract-22/bin:$PATH"
 
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 # eval "$(rbenv init -)"
 # export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
@@ -280,3 +274,29 @@ export PATH="$PATH:/Users/john/Library/Application Support/Coursier/bin"
 [[ -f /Users/john/.dart-cli-completion/zsh-config.zsh ]] && . /Users/john/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+# Added by Antigravity
+export PATH="/Users/john/.antigravity/antigravity/bin:$PATH"

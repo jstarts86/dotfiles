@@ -1,0 +1,112 @@
+# -----------------------------------------------------------------------------
+# Base image
+# -----------------------------------------------------------------------------
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
+# -----------------------------------------------------------------------------
+# Install base dependencies (including NodeSource for Node 20.x)
+# -----------------------------------------------------------------------------
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    unzip \
+    zip \
+    tar \
+    gzip \
+    bash \
+    ca-certificates \
+    software-properties-common \
+    locales \
+    ripgrep \
+    fd-find \
+    python3 \
+    python3-pip \
+    python3-venv \
+    openjdk-21-jre-headless \
+    ruby-full \
+    luarocks \
+    fish \
+    jq \
+    sqlite3 \
+    graphviz \
+    imagemagick \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-fonts-recommended \
+    latexmk \
+    biber \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------------------------------------
+# Install Node.js 20.x LTS (required by modern LSPs)
+# -----------------------------------------------------------------------------
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------------------------------------
+# Install Rust via rustup (for tree-sitter-cli)
+# -----------------------------------------------------------------------------
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && . "$HOME/.cargo/env"
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# -----------------------------------------------------------------------------
+# Install extra developer tools used by plugins
+# -----------------------------------------------------------------------------
+RUN npm install -g \
+    neovim \
+    prettier \
+    markdownlint-cli2 \
+    vscode-langservers-extracted \
+    graphql-language-service-cli \
+    typescript-language-server \
+    yaml-language-server \
+    @tailwindcss/language-server \
+    vscode-json-languageserver \
+    bash-language-server \
+    @vtsls/language-server \
+    @astrojs/language-server \
+    pyright \
+    && pip install --no-cache-dir --break-system-packages \
+    pynvim \
+    ruff-lsp \
+    basedpyright \
+    sqlfluff \
+    && gem install neovim \
+    && cargo install tree-sitter-cli \
+    && npm cache clean --force \
+    && rm -rf /root/.cargo/registry
+
+# -----------------------------------------------------------------------------
+# Add Neovim unstable PPA and install (>= 0.11.x)
+# -----------------------------------------------------------------------------
+RUN add-apt-repository ppa:neovim-ppa/unstable -y \
+    && apt-get update \
+    && apt-get install -y neovim \
+    && rm -rf /var/lib/apt/lists/*
+
+# -----------------------------------------------------------------------------
+# Configure LazyVim
+# -----------------------------------------------------------------------------
+WORKDIR /root
+RUN git clone https://github.com/jstarts86/LazyNvim.git /root/.config/nvim
+
+# Sync LazyVim and install plugins
+RUN nvim --headless "+Lazy! sync" +qa || true
+
+# -----------------------------------------------------------------------------
+# Environment configuration
+# -----------------------------------------------------------------------------
+ENV EDITOR=nvim
+ENV PATH="$PATH:/root/.local/share/nvim/mason/bin:/root/.cargo/bin"
+
+# -----------------------------------------------------------------------------
+# Launch Neovim by default
+# -----------------------------------------------------------------------------
+CMD ["nvim"]

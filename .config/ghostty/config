@@ -1,19 +1,23 @@
-theme = dark:rose-pine,light:rose-pine
+theme = dark:Solarized Dark Higher Contrast, light: modus-operandi
+# theme = dark: Vague, light: modus-operandi
 cursor-color = #f312db
 # cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 bold-is-bright = true
-background-opacity = .8
-background-blur = true
-background = #000000
+background-opacity = .95
+background-blur = 10
+# background = #000000
 font-family = "JetBrainsMonoNL NFM"
+font-family = "Osaka-Mono"
 font-feature = -calt, -liga, -dlig
 # window-decoration = false
-
+# background-image = "~/dotfiles/.config/ghostty/background/3_photobooth.png"
+# background-image-opacity = .10
+# background-image-fit = contain
 # cursor-color = #FFA500
 # font-feature = +liga
 cursor-style = block
-shell-integration = fish
+shell-integration = zsh
 
 cursor-style-blink = false
 
