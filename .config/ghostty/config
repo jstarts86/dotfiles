@@ -1,10 +1,10 @@
-theme = dark:Solarized Dark Higher Contrast, light: modus-operandi
+theme = dark:iTerm2 Solarized Dark, light: modus-operandi
 # theme = dark: Vague, light: modus-operandi
 cursor-color = #f312db
 # cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 bold-is-bright = true
-background-opacity = .95
+background-opacity = 1
 background-blur = 10
 # background = #000000
 font-family = "JetBrainsMonoNL NFM"

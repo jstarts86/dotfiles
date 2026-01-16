@@ -213,8 +213,11 @@ bindkey -v
 export PATH="$HOME/.atuin/bin:$PATH"
 # Set JAVA_HOME to Amazon Corretto 22
 #
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
-export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
+# export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/21.0.9-oracle"
+export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/21.0.9-oracle"
+
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/development/jextract-22/bin:$PATH"
 
@@ -300,3 +303,7 @@ eval "$(atuin init zsh)"
 
 # Added by Antigravity
 export PATH="/Users/john/.antigravity/antigravity/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
