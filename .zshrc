@@ -163,9 +163,10 @@ complete -W "$NG_COMMANDS" ng
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-eval "$(zoxide init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Keep the `fzf` CLI available without installing its shell keybindings,
+# so `tv` owns interactive fuzzy search bindings like Ctrl-T and Ctrl-R.
+[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
 
 
 
@@ -233,41 +234,41 @@ zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'exter
 bindkey -v
 # export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 # ------------------------------------------------------------------------------
-# Custom fzf function to cd into selected directory in $HOME using fd and eza
+# Use Television for the custom home directory picker as well, so shell fuzzy
+# search behavior stays on one tool instead of mixing `tv` and `fzf`.
 # ------------------------------------------------------------------------------
-fzf-cd-home-widget() {
-  # Use fd to find directories (-t d) within $HOME (.)
-  # Exclude common large/irrelevant directories for speed/clarity
-  # Pipe the list into fzf
-  local selected_dir
-  selected_dir=$(fd --type d --hidden --exclude .git --exclude node_modules --exclude .cache --exclude .local/share --exclude Library . "$HOME" | \
-                 fzf --height 50% --reverse --border --prompt="Select Directory > " \
-                     --preview 'eza --tree --level=2 --color=always {}' \
-                     --bind 'ctrl-/:toggle-preview')
+tv-cd-home-widget() {
+  emulate -L zsh
+  setopt pipefail no_aliases 2>/dev/null
 
-  # If fzf returned a selection (didn't exit empty)
+  local source_cmd selected_dir
+  source_cmd="fd --type d --hidden --exclude .git --exclude node_modules --exclude .cache --exclude .local/share --exclude Library . \"$HOME\""
+
+  selected_dir=$(tv \
+    --source-command "$source_cmd" \
+    --source-display '{split:/:-1}' \
+    --source-output '{}' \
+    --preview-command 'eza --tree --level=2 --color=always "{}"' \
+    --preview-size 55 \
+    --input-prompt 'Select Directory > ' \
+    --inline \
+    --no-status-bar)
+
   if [[ -n "$selected_dir" ]]; then
-    # Use zsh's BUFFER to set the command line content to 'cd ...'
-    # The quotes handle directories with spaces
     BUFFER="cd \"$selected_dir\""
-    # Use accept-line to execute the command in the buffer (like pressing Enter)
     zle accept-line
   else
-    # If fzf was cancelled (e.g., Esc), just redraw the prompt
     zle redisplay
   fi
-  # Ensure the line editor state is consistent
+
   zle reset-prompt
 }
 
-# Create a ZLE widget named 'fzf-cd-home-widget' from the function
-zle -N fzf-cd-home-widget
-
-# Bind Ctrl+f (^f) to the new widget
-bindkey '^f' fzf-cd-home-widget
+zle -N tv-cd-home-widget
+bindkey '^f' tv-cd-home-widget
 
 # Optional: Bind another key, e.g., Alt+f (^[f) if Ctrl+f conflicts
-# bindkey '^[f' fzf-cd-home-widget
+# bindkey '^[f' tv-cd-home-widget
 # ------------------------------------------------------------------------------
 
 export PATH="$PATH:/Users/john/Library/Application Support/Coursier/bin"
@@ -307,3 +308,11 @@ export PATH="/Users/john/.antigravity/antigravity/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(tv init zsh)"

@@ -1,4 +1,5 @@
-theme = dark:iTerm2 Solarized Dark, light: modus-operandi
+# theme = dark:Solarized Dark Higher Contrast, light: Solarized Dark Higher Contrast
+theme = dark:Rose Pine Moon, light: Rose Pine Moon
 # theme = dark: Vague, light: modus-operandi
 cursor-color = #f312db
 # cursor-invert-fg-bg = true
@@ -24,3 +25,59 @@ cursor-style-blink = false
 clipboard-read = allow
 clipboard-write = allow
 clipboard-trim-trailing-spaces = true
+
+# -----------------------------------------------------------------------------
+# macOS Command-key bridge for tmux / Neovim
+# -----------------------------------------------------------------------------
+# tmux prefix is `C-Space`, which Ghostty emits as `\x00`.
+# Change the payload after `text:` if you want to remap any shortcut.
+#
+# tmux-oriented shortcuts
+# Command-E: split the current tmux pane vertically (`"` in tmux).
+keybind = cmd+e=text:\x00"
+# Command-Shift-E: split the current tmux pane horizontally (`%` in tmux).
+keybind = cmd+shift+e=text:\x00%
+# Command-K: open the sesh session picker through tmux `prefix + T`.
+keybind = cmd+k=text:\x00T
+# Command-P: toggle tmux-floax through tmux `prefix + p`.
+keybind = cmd+p=text:\x00p
+# Command-T: create a new tmux window.
+keybind = cmd+t=text:\x00c
+# Command-W: kill the current tmux pane.
+keybind = cmd+w=text:\x00x
+# Command-Z: toggle zoom for the current tmux pane.
+keybind = cmd+z=text:\x00z
+# Control-Tab: move to the next tmux window.
+keybind = ctrl+tab=text:\x00n
+# Control-`: move to the previous tmux window.
+keybind = ctrl+grave_accent=text:\x00p
+# Command-,: rename the current tmux window.
+keybind = cmd+comma=text:\x00,
+# Command-;: open the tmux command prompt.
+keybind = cmd+semicolon=text:\x00:
+# Command-Shift-Left: move to the previous tmux window.
+keybind = cmd+shift+left=text:\x00p
+# Command-Shift-Right: move to the next tmux window.
+keybind = cmd+shift+right=text:\x00n
+# Command-1..9: jump directly to tmux windows 1 through 9.
+keybind = cmd+1=text:\x001
+keybind = cmd+2=text:\x002
+keybind = cmd+3=text:\x003
+keybind = cmd+4=text:\x004
+keybind = cmd+5=text:\x005
+keybind = cmd+6=text:\x006
+keybind = cmd+7=text:\x007
+keybind = cmd+8=text:\x008
+keybind = cmd+9=text:\x009
+#
+# Neovim-oriented shortcuts
+# Command-Shift-P: run `:GoToFile` in Neovim.
+# keybind = cmd+shift+p=text::GoToFile\n
+# Command-Q: quit the current Neovim window/buffer with `:q`.
+# keybind = cmd+q=text::q\n
+# Command-S: save the current Neovim buffer with `<Esc>:w`.
+# keybind = cmd+s=text:\x1b:w\n
+# Command-[: jump back in Neovim jumplist (`Ctrl-O`).
+# keybind = cmd+left_bracket=text:\x0f
+# Command-]: jump forward in Neovim jumplist (`Ctrl-I` / Tab).
+# keybind = cmd+right_bracket=text:\x09

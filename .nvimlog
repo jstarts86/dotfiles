@@ -1,0 +1,3 @@
+WRN 2026-04-10T19:51:46.889 ?.51016    server_start:193: Failed to start server: operation not permitted: /var/folders/zm/rkddqv_51zq_wtbf8jhlt39r0000gn/T/nvim.john/lM5QGi/nvim.51016.0
+WRN 2026-04-10T19:58:51.213 ?.58626    server_start:193: Failed to start server: operation not permitted: /var/folders/zm/rkddqv_51zq_wtbf8jhlt39r0000gn/T/nvim.john/fpj5kP/nvim.58626.0
+WRN 2026-04-10T19:58:53.304 ?.58627    server_start:193: Failed to start server: operation not permitted: /var/folders/zm/rkddqv_51zq_wtbf8jhlt39r0000gn/T/nvim.john/12mDML/nvim.58627.0
