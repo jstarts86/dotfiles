@@ -90,7 +90,7 @@ plugins=(
 )
 - 
 # eval "$(direnv hook zsh)"
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin":$PATH
 
