@@ -28,13 +28,25 @@ Always run `chezmoi diff` before `chezmoi apply` to review what will change.
 ## Linux / DGX Spark
 
 On the first `chezmoi apply` on a Linux system, the
-`run_once_install-linux.sh` bootstrap script installs:
+`run_once_install-linux.sh` bootstrap script:
 
-- zsh, tmux, fzf, ripgrep, fd-find, build tooling
-- Starship prompt, Atuin shell history
-- Yazi file manager
+1. Installs [Homebrew](https://brew.sh/) (Linuxbrew) if not already present
+2. Uses `brew install` for: **zsh, tmux, fzf, ripgrep, fd, starship, atuin, yazi**
+3. Uses `apt` for system essentials: **git, curl, build-essential, unzip**
+4. Sets brew's zsh as the default shell
 
-The `zprofile` template also configures CUDA paths for the DGX Spark.
+The `zprofile` template also configures brew and CUDA paths for the DGX Spark.
+
+> **Already ran the old script?** If you bootstrapped an earlier version, the
+> packages are installed via apt. Brew's versions will shadow them via PATH
+> after `chezmoi apply` pulls the updated `zprofile`. To clean up the apt
+> versions:
+>
+> ```sh
+> brew install zsh tmux fzf ripgrep fd starship atuin yazi
+> sudo apt remove -y zsh tmux fzf ripgrep fd-find
+> chsh -s "$(brew --prefix)/bin/zsh"
+> ```
 
 ## Repo Layout
 
