@@ -1,0 +1,25 @@
+{
+  "attribution": {
+    "commit": ""
+  },
+  "model": "sonnet",
+  "enabledPlugins": {
+    "jdtls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "theme": "auto",
+  "editorMode": "vim",
+  "verbose": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
+}
