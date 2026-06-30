@@ -34,7 +34,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's done
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -86,20 +86,23 @@ plugins=(
     nvm
 
 
-
 )
 - 
 # eval "$(direnv hook zsh)"
 ZSH_TMUX_AUTOSTART=false
-source $ZSH/oh-my-zsh.sh
+[[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin":$PATH
 
 # alias nvim-lazy="NVIM_APPNAME=LazyNvim nvim"
 
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:$PATH"
+{{ end }}
 # alias lvim="NVIM_APPNAME=LazyNvim nvim"
 export EDITOR='nvim'
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+{{ end }}
 
 export LUA_CPATH=";;${HOME}/.luarocks/lib/lua/5.1/?.so"
 export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share/lua/5.1/?/init.lua"
@@ -152,23 +155,27 @@ alias tree="eza --tree"
 alias gcane="git commit --amend --no-edit"
 alias cat="bat"
 
-
-
-eval "$(zoxide init --cmd cd zsh)"
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 # Load Angular CLI autocompletion.
 
 NG_COMMANDS="add build config doc e2e generate help lint new run serve test update version xi18n"
-complete -W "$NG_COMMANDS" ng
+if command -v complete &>/dev/null; then
+    complete -W "$NG_COMMANDS" ng
+fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Keep the `fzf` CLI available without installing its shell keybindings,
 # so `tv` owns interactive fuzzy search bindings like Ctrl-T and Ctrl-R.
+{{ if eq .chezmoi.os "darwin" }}
 [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
-
-
+{{ else if eq .chezmoi.os "linux" }}
+[ -f /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh ] && source /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh
+{{ end }}
 
 kitty-reload() {
     kill -SIGUSR1 $(pidof kitty)
@@ -176,9 +183,10 @@ kitty-reload() {
 # export PATH="$HOME/.luaenv/bin:$PATH"
 # eval "$(luaenv init -)"
 
-
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
+{{ end }}
 export PATH=$HOME/development/flutter/bin:$PATH
 
 
@@ -192,26 +200,32 @@ function y() {
 }
 export PATH=$PATH:/nix/var/nix/profiles/default/bin/
 
+{{ if eq .chezmoi.os "darwin" }}
 export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 export PGDATA=/opt/homebrew/var/postgresql@17
 export PATH="/opt/homebrew/Cellar/postgresql@17/17.2/bin/:$PATH"
+{{ end }}
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 # End Nix
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # eval "$(rbenv init -)"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+{{ end }}
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+{{ if eq .chezmoi.os "darwin" }}
 # export JAVA_HOME=/Users/john/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
 export PATH="/Applications/MATLAB_R2024b.app/bin:$PATH"
+{{ end }}
 
 bindkey -v
-export PATH="$HOME/.atuin/bin:$PATH"
+[[ -d "$HOME/.atuin/bin" ]] && export PATH="$HOME/.atuin/bin:$PATH"
 # Set JAVA_HOME to Amazon Corretto 22
 #
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
@@ -222,10 +236,12 @@ export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/21.0.9-tem"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/development/jextract-22/bin:$PATH"
 
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
-zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+if command -v carapace &>/dev/null; then
+    export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+    zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+    source <(carapace _carapace)
+    zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+fi
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
 # eval "$(rbenv init -)"
 # export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
@@ -237,40 +253,43 @@ bindkey -v
 # Use Television for the custom home directory picker as well, so shell fuzzy
 # search behavior stays on one tool instead of mixing `tv` and `fzf`.
 # ------------------------------------------------------------------------------
-tv-cd-home-widget() {
-  emulate -L zsh
-  setopt pipefail no_aliases 2>/dev/null
+if command -v tv &>/dev/null; then
+    tv-cd-home-widget() {
+      emulate -L zsh
+      setopt pipefail no_aliases 2>/dev/null
 
-  local source_cmd selected_dir
-  source_cmd="fd --type d --hidden --exclude .git --exclude node_modules --exclude .cache --exclude .local/share --exclude Library . \"$HOME\""
+      local source_cmd selected_dir
+      source_cmd="fd --type d --hidden --exclude .git --exclude node_modules --exclude .cache --exclude .local/share --exclude Library . \"$HOME\""
 
-  selected_dir=$(tv \
-    --source-command "$source_cmd" \
-    --source-display '{split:/:-1}' \
-    --source-output '{}' \
-    --preview-command 'eza --tree --level=2 --color=always "{}"' \
-    --preview-size 55 \
-    --input-prompt 'Select Directory > ' \
-    --inline \
-    --no-status-bar)
+      selected_dir=$(tv \
+        --source-command "$source_cmd" \
+        --source-display '{split:/:-1}' \
+        --source-output '{}' \
+        --preview-command 'eza --tree --level=2 --color=always "{}"' \
+        --preview-size 55 \
+        --input-prompt 'Select Directory > ' \
+        --inline \
+        --no-status-bar)
 
-  if [[ -n "$selected_dir" ]]; then
-    BUFFER="cd \"$selected_dir\""
-    zle accept-line
-  else
-    zle redisplay
-  fi
+      if [[ -n "$selected_dir" ]]; then
+        BUFFER="cd \"$selected_dir\""
+        zle accept-line
+      else
+        zle redisplay
+      fi
 
-  zle reset-prompt
-}
+      zle reset-prompt
+    }
 
-zle -N tv-cd-home-widget
-bindkey '^f' tv-cd-home-widget
+    zle -N tv-cd-home-widget
+    bindkey '^f' tv-cd-home-widget
 
-# Optional: Bind another key, e.g., Alt+f (^[f) if Ctrl+f conflicts
-# bindkey '^[f' tv-cd-home-widget
+    # Optional: Bind another key, e.g., Alt+f (^[f) if Ctrl+f conflicts
+    # bindkey '^[f' tv-cd-home-widget
+fi
 # ------------------------------------------------------------------------------
 
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="$PATH:/Users/john/Library/Application Support/Coursier/bin"
 
 ## [Completion]
@@ -296,23 +315,31 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+{{ end }}
 
+[[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
 
-. "$HOME/.atuin/bin/env"
+if command -v atuin &>/dev/null; then
+    eval "$(atuin init zsh)"
+fi
 
-eval "$(atuin init zsh)"
-
+{{ if eq .chezmoi.os "darwin" }}
 # Added by Antigravity
 export PATH="/Users/john/.antigravity/antigravity/bin:$PATH"
+{{ end }}
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+{{ if eq .chezmoi.os "darwin" }}
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc'; fi
+{{ end }}
 
-eval "$(tv init zsh)"
+if command -v tv &>/dev/null; then
+    eval "$(tv init zsh)"
+fi
