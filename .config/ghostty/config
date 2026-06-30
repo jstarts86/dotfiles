@@ -1,11 +1,13 @@
+theme = dark:TokyoNight Storm, light: TokyoNight Day
+# theme = dark:Solarized Dark Higher Contrast, light: modus-operandi
 # theme = dark:Solarized Dark Higher Contrast, light: Solarized Dark Higher Contrast
-theme = dark:Rose Pine Moon, light: Rose Pine Moon
+# theme = dark:Rose Pine Moon, light: Rose Pine Moon
 # theme = dark: Vague, light: modus-operandi
 cursor-color = #f312db
 # cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 bold-is-bright = true
-background-opacity = 1
+background-opacity = .95
 background-blur = 10
 # background = #000000
 font-family = "JetBrainsMonoNL NFM"
@@ -33,12 +35,35 @@ clipboard-trim-trailing-spaces = true
 # Change the payload after `text:` if you want to remap any shortcut.
 #
 # tmux-oriented shortcuts
+# Ghostty reserves Command-1..9 for tab navigation on macOS. Unbind those
+# defaults so the custom tmux bridge below receives the keypresses instead.
+keybind = cmd+1=unbind
+keybind = cmd+2=unbind
+keybind = cmd+3=unbind
+keybind = cmd+4=unbind
+keybind = cmd+5=unbind
+keybind = cmd+6=unbind
+keybind = cmd+7=unbind
+keybind = cmd+8=unbind
+keybind = cmd+9=unbind
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+
 # Command-E: split the current tmux pane vertically (`"` in tmux).
 keybind = cmd+e=text:\x00"
 # Command-Shift-E: split the current tmux pane horizontally (`%` in tmux).
 keybind = cmd+shift+e=text:\x00%
 # Command-K: open the sesh session picker through tmux `prefix + T`.
 keybind = cmd+k=text:\x00T
+# Command-L: switch to the last tmux session (`prefix + L` → switch-client -l).
+keybind = cmd+l=text:\x00L
 # Command-P: toggle tmux-floax through tmux `prefix + p`.
 keybind = cmd+p=text:\x00p
 # Command-T: create a new tmux window.

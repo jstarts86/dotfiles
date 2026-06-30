@@ -216,8 +216,8 @@ export PATH="$HOME/.atuin/bin:$PATH"
 #
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
 # export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
-export JAVA_HOME="$HOME/.sdkman/candidates/java/21.0.9-oracle"
-export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/21.0.9-oracle"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/21.0.9-tem"
+export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/21.0.9-tem"
 
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/development/jextract-22/bin:$PATH"

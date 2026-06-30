@@ -41,9 +41,18 @@ path = "~/.config/nvim"
 disable_startup_command = true
 windows = ["editor"]
 
+
+[[session]]
+name = "ghostty config"
+path = "~/.config/ghostty"
+startup_command = "nvim config"
+# disable_startup_command = true
+# windows = ["editor"]
+
+
 [[session]]
 name = "petthriftier api"
-path = "~/Coding/BackendProjects/petthriftier-api"
+path = "~/Coding/BackendProjects/pet-thriftier-api"
 startup_command = "tmux rename-window cli && tmux split-window -h -c \"#{pane_current_path}\" \"gh dash\" && tmux select-pane -L"
 windows = ["editor"]
 
@@ -59,6 +68,31 @@ path = "~/Coding/BackendProjects/eline3d-nfc"
 startup_command = "tmux rename-window cli && tmux split-window -h -c \"#{pane_current_path}\" \"gh dash\" && tmux select-pane -L"
 windows = ["editor"]
 
+[[session]]
+name = "start2save api"
+path = "~/Coding/BackendProjects/start2save-api"
+startup_command = "tmux rename-window cli && tmux split-window -h -c \"#{pane_current_path}\" \"gh dash\" && tmux select-pane -L"
+windows = ["editor"]
+
+[[session]]
+name = "nvidia"
+path = "~"
+startup_command = "ssh song"
+
+[[session]]
+name = "ssh juser"
+path = "~"
+startup_command = "ssh juser"
+
+[[session]]
+name = "ssh song"
+path = "~"
+startup_command = "ssh song"
+
+[[session]]
+name = "empty"
+path = "$HOME"
+windows = ["scratch"]
 # [[wildcard]]
 # pattern = "~/Coding/BackendProjects/*"
 # startup_command = "tmux rename-window cli && tmux split-window -h -c \"#{pane_current_path}\" \"gh dash\" && tmux select-pane -L"
@@ -71,7 +105,9 @@ windows = ["editor"]
 
 [[window]]
 name = "editor"
-startup_script = "~/.config/sesh/scripts/editor-root-picker.sh"
+# startup_script = "~/.config/sesh/scripts/editor-root-picker.sh"
+startup_script = "nvim ."
+
 
 
 [[window]]

@@ -201,6 +201,10 @@ run = 'move-node-to-workspace G'
 [[on-window-detected]]
 if.app-id = "com.kakao.KakaoTalkMac"
 run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run = 'move-node-to-workspace M'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [workspace-to-monitor-force-assignment]
@@ -208,6 +212,7 @@ run = 'move-node-to-workspace M'
 M = [ 'main','(1)', 'secondary']
 
 11 = ['(1)', 'secondary', 'main']
+R = ['(1)', 'secondary', 'main']
 6 = ['Sidecar', 'main']
 
 
