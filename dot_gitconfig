@@ -1,0 +1,11 @@
+[user]
+	name = John Song
+	email = jstarts86@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

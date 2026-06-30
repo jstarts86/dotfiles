@@ -1,0 +1,58 @@
+Include "/Users/john/Library/Application Support/NVIDIA/Sync/config/ssh_config"
+
+# DevPod Start workspace1.devpod
+Host workspace1.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/usr/local/bin/devpod" ssh --stdio --context default --user root workspace1 --workdir "/workspace"
+  User root
+# DevPod End workspace1.devpod
+# DevPod Start workspace2.devpod
+Host workspace2.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/usr/local/bin/devpod" ssh --stdio --context default --user root workspace2 --workdir "/workspace"
+  User root
+# DevPod End workspace2.devpod
+Host dapiserver
+  HostName 203.252.112.15
+  User dapi2
+
+Host kubicserver
+  HostName 203.252.112.15
+  User kubic
+
+Host 192.168.1.201
+  HostName 192.168.1.201
+  ProxyJump isel@203.252.112.33
+  User root
+
+Host peace.handong.edu
+  HostName peace.handong.edu
+  User yesong
+
+Host peace.handong.edu
+  HostName peace.handong.edu
+  User yesong
+
+Host jump
+    HostName 203.252.112.33
+    User isel
+
+Host master1
+    HostName 192.168.1.22
+    User ubuntu
+    IdentityFile ~/.ssh/keypair-doc
+    ProxyJump root@192.168.1.201
+
+Host slave1
+    HostName 192.168.1.23
+    User ubuntu
+    IdentityFile ~/.ssh/keypair-doc
+    ProxyJump root@192.168.1.201

@@ -1,2 +1,4 @@
-.config/ghostty/background/
-.config/gh/hosts.yml
+dot_config/ghostty/background/
+dot_config/gh/hosts.yml
+dot_config/yazi/*-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+dot_config/yazi/flavors/

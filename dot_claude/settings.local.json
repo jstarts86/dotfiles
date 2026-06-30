@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/john/dotfiles/.config/nvidia-sync/ghostty-ssh.sh)",
+      "Bash(ln -sf /Users/john/dotfiles/.config/nvidia-sync /Users/john/.config/nvidia-sync)",
+      "Read(//Users/john/.config/**)"
+    ]
+  }
+}

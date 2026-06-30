@@ -1,0 +1,25 @@
+# A basic .inputrc file that customizes tab completions and disables the alert bell.
+#
+# This file has been tested on OS X, Windows (Git Bash), and Linux.
+# It is used at Princeton University (COS 126 and COS 226) and Coursera
+# (Algorithms, Part I and II; Computer Science: Programming with a Purpose).
+#
+# It is distributed via the IntelliJ/Java installer:
+#   https://lift.cs.princeton.edu/java/mac
+#   https://lift.cs.princeton.edu/java/windows
+#   https://lift.cs.princeton.edu/java/linux
+
+# Written by Kevin Wayne
+
+
+# tab completions
+set show-all-if-ambiguous on
+set completion-ignore-case on
+
+# disable "display all possibilities prompt when too many items"
+set completion-query-items 9999
+set page-completions off
+
+# disable alert bell
+set bell-style none
+
