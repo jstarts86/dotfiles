@@ -1,0 +1,14 @@
+local M = {}
+
+function M.setup()
+{{- if eq .chezmoi.os "linux" }}
+  vim.g.python3_host_prog = "/usr/bin/python3"
+
+  -- CUDA paths available in env
+  vim.env.CUDA_HOME = "/usr/local/cuda"
+{{- else }}
+  vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
+{{- end }}
+end
+
+return M

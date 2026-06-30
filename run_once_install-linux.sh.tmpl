@@ -1,0 +1,27 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+set -e
+
+sudo apt update
+sudo apt install -y zsh tmux git curl fzf ripgrep fd-find build-essential unzip
+
+# Starship prompt
+curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
+# Atuin shell history
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
+# Yazi file manager
+YAZI_URL="https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip"
+curl -sL "$YAZI_URL" -o /tmp/yazi.zip
+unzip -o /tmp/yazi.zip -d /tmp/yazi-extract
+mv /tmp/yazi-extract/yazi-x86_64-unknown-linux-gnu/yazi ~/.local/bin/yazi
+mv /tmp/yazi-extract/yazi-x86_64-unknown-linux-gnu/ya ~/.local/bin/ya
+chmod +x ~/.local/bin/yazi ~/.local/bin/ya
+rm -rf /tmp/yazi.zip /tmp/yazi-extract
+
+# Set zsh as default shell
+chsh -s "$(which zsh)"
+
+echo "Bootstrap complete. Open a new shell (zsh) to continue."
+{{ end -}}
