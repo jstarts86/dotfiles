@@ -131,6 +131,13 @@ export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share
 #   export EDITOR='mvim'
 # fi
 
+# Fix TERM when SSH'd without tmux — avoids arrow key issues in TUI apps like opencode
+if [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
+    case "$TERM" in
+        tmux*|screen*) export TERM=xterm-256color ;;
+    esac
+fi
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
