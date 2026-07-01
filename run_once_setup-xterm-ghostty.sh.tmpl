@@ -1,0 +1,12 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+set -e
+
+GHOSTTY_TERMINFO="/home/linuxbrew/.linuxbrew/Cellar/ncurses/6.6/share/terminfo/g/ghostty"
+TARGET_DIR="$HOME/.terminfo/x"
+
+if [ -f "$GHOSTTY_TERMINFO" ] && [ ! -f "$TARGET_DIR/xterm-ghostty" ]; then
+    mkdir -p "$TARGET_DIR"
+    ln -s "$GHOSTTY_TERMINFO" "$TARGET_DIR/xterm-ghostty"
+fi
+{{ end -}}
