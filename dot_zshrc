@@ -134,7 +134,7 @@ export LUA_PATH=";;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share
 # Fix TERM when SSH'd without tmux — avoids arrow key issues in TUI apps like opencode
 if [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
     case "$TERM" in
-        tmux*|screen*) export TERM=xterm-256color ;;
+        tmux*|screen*|xterm-ghostty) export TERM=xterm-256color ;;
     esac
 fi
 
@@ -223,8 +223,8 @@ export PATH="$HOME/.atuin/bin:$PATH"
 #
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"  
 # export JAVA_HOME="/Users/john/Library/Java/JavaVirtualMachines/corretto-22.0.2/Contents/Home"
-export JAVA_HOME="$HOME/.sdkman/candidates/java/21.0.9-tem"
-export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/21.0.9-tem"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"         # Java 21 — Gradle/project builds
+export JAVA_LSP_HOST_JAVA="$HOME/.sdkman/candidates/java/25.0.3-tem" # Java 25 — JLS requires it
 
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/development/jextract-22/bin:$PATH"
@@ -312,6 +312,9 @@ eval "$(atuin init zsh)"
 # Added by Antigravity
 export PATH="/Users/john/.antigravity/antigravity/bin:$PATH"
 
+# Rust/cargo (nil language server, etc.)
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -323,3 +326,10 @@ if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sd
 if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(tv init zsh)"
+
+# fnm — fast node manager (used on Linux; macOS may use nvm instead)
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
