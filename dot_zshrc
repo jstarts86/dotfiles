@@ -325,6 +325,12 @@ if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sd
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/john/obsidian/Second Brain/My-Brain-Is-Full-Crew/google-cloud-sdk/completion.zsh.inc'; fi
 
+# The next line updates PATH for the Google Cloud SDK (DGX Spark install).
+if [ -f '/home/juser/google-cloud-sdk/path.zsh.inc' ]; then . '/home/juser/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud (DGX Spark install).
+if [ -f '/home/juser/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/juser/google-cloud-sdk/completion.zsh.inc'; fi
+
 eval "$(tv init zsh)"
 
 # fnm — fast node manager (used on Linux; macOS may use nvm instead)
