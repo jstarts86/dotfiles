@@ -6,13 +6,14 @@ set -e
 if ! command -v fnm &>/dev/null && [ ! -f "$HOME/.local/share/fnm/fnm" ]; then
     echo "Installing fnm..."
     curl -fsSL https://fnm.vercel.app/install | bash
+    hash -r 2>/dev/null || true
 fi
 
 # Ensure fnm is available in this session
 export FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
     export PATH="$FNM_PATH:$PATH"
-    eval "$(fnm env --shell zsh)"
+    eval "$(fnm env --shell bash 2>/dev/null)" || true
 fi
 
 # Install Node 22 LTS and set as default
