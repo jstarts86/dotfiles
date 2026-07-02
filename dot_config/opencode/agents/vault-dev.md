@@ -6,7 +6,7 @@ description: >-
   "update VAULT.md", "add a task", "mark done", "log a decision", "log a learning", "set the focus",
   "what's the status", "sync vault", "update project status".
 mode: subagent
-model: opencode/deepseek-v4-flash
+model: opencode-go/deepseek-v4-flash
 variant: max_effort
 tools:
   read: true

@@ -2,15 +2,18 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode-go/deepseek-v4-flash",
   "lsp": true,
-  "plugin": [
-    "opencode-history-search",
-  ],
+  "plugin": ["opencode-history-search"],
   "agent": {
     "build": {
       "model": "opencode-go/deepseek-v4-flash"
     },
     "plan": {
       "model": "opencode-go/deepseek-v4-pro"
+    },
+    "vault-dev": {
+      "mode": "subagent",
+      "model": "opencode-go/deepseek-v4-pro",
+      "variant": "high"
     }
   }
 }
