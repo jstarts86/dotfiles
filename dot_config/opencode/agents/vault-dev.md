@@ -122,6 +122,18 @@ When the user wants to update the project status from within the repo:
 Append to `## Open Tasks` in `VAULT.md`. If the task relates to a specific file or function, include the location:
 - `- [ ] Task description — \`path/to/file.py:line\``
 
+**Task naming convention** — the task description must describe **what changes in the codebase**, using concrete class/route/file names.
+
+| Type | Pattern | Example |
+|------|---------|---------|
+| Entity/schema | `<Entity> entity <what changed>` | `AppUser entity stores social login identity columns` |
+| New endpoint | `<Feature> endpoint — <METHOD> <route>` | `Google OAuth login endpoint — POST /auth/google-login` |
+| Tests | `<Scope> tests for <what is tested>` | `Integration tests for Google login flow` |
+| Config/docs | `<What was configured or documented>` | `Production CORS domains and Google login handoff doc` |
+| General feature | `<Subject> — <what it does>` | `Products endpoint returns filtered and paginated results` |
+
+Avoid action-first ("Add field", "Create endpoint", "Write tests"). Describe the state of the codebase.
+
 ### "Mark done" / "Complete [task]"
 Move the matching task from `## Open Tasks` to `## Completed Recently` with today's date.
 
