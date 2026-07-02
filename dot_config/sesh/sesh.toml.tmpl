@@ -120,20 +120,24 @@ startup_script = "nvim ."
 
 [[session]]
 name = "creative outlet"
-path = "~/obsidian/creative_outlet/"
+path = "~/obsidian/creative_outlet"
+disable_startup_command = true
+windows = ["claude"]
 
 [[session]]
 name = "Second Brain"
-path = "~/obsidian/second_brain/"
+path = "~/obsidian/second_brain"
+disable_startup_command = true
+windows = ["claude"]
 
 
 [[session]]
 name = "Second heart"
-path = "~/obsidian/second_heart/"
+path = "~/obsidian/second_heart"
 
 [[session]]
 name = "start2save-api"
-path = "~/coding/backend_projects/start2save-api/"
+path = "~/coding/backend_projects/start2save-api"
 
 {{ end -}}
 
@@ -146,3 +150,8 @@ startup_script = "~/.config/sesh/scripts/cli-gh-dash.sh"
 name = "claude"
 disable_startup_command = true
 startup_script = "claude"
+
+[[window]]
+name = "opencode"
+disable_startup_command = true
+startup_script = "opencode"

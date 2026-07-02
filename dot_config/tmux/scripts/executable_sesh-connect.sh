@@ -83,9 +83,4 @@ if [[ "$current_session_name" == "$prefix"* ]] && [ -n "$origin_client_name" ] &
     fi
 fi
 
-if [[ "$(uname -s)" == "Linux" ]]; then
-    sesh connect --switch "$selected"
-    tmux send-keys -R C-l
-else
-    exec sesh connect --switch "$selected"
-fi
+sesh connect "$selected"
