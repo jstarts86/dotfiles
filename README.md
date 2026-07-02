@@ -31,7 +31,7 @@ On the first `chezmoi apply` on a Linux system, the
 `run_once_install-linux.sh` bootstrap script:
 
 1. Installs [Homebrew](https://brew.sh/) (Linuxbrew) if not already present
-2. Uses `brew install` for: **zsh, tmux, fzf, ripgrep, fd, starship, atuin, yazi, zoxide, carapace, television, bat, eza**
+2. Uses `brew install` for: **zsh, tmux, fzf, ripgrep, fd, starship, atuin, yazi, zoxide, carapace, television, bat, eza, neovim**
 3. Installs oh-my-zsh
 4. Uses `apt` for system essentials: **git, curl, build-essential, unzip**
 5. Sets brew's zsh as the default shell
@@ -44,7 +44,7 @@ The `zprofile` template also configures brew and CUDA paths for the DGX Spark.
 > up the apt versions and install the full tool set:
 >
 > ```sh
-> brew install zsh tmux fzf ripgrep fd starship atuin yazi zoxide carapace television bat eza
+> brew install zsh tmux fzf ripgrep fd starship atuin yazi zoxide carapace television bat eza neovim
 > sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 > sudo apt remove -y zsh tmux fzf ripgrep fd-find
 > sudo chsh -s "$(brew --prefix)/bin/zsh" "$USER"
