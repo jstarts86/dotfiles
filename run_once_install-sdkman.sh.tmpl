@@ -1,0 +1,29 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+set -e
+
+# Install SDKMAN if not already present
+if [ ! -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+    echo "Installing SDKMAN..."
+    curl -s "https://get.sdkman.io" | bash
+fi
+
+# Source SDKMAN
+# shellcheck disable=SC1090
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Install Java 21 LTS (Temurin) — default, for Gradle/project builds
+if ! sdk list java 2>/dev/null | grep -q "21.0.7-tem.*installed"; then
+    echo "Installing Java 21 (Temurin)..."
+    sdk install java 21.0.7-tem </dev/null
+    sdk default java 21.0.7-tem
+fi
+
+# Install Java 25 (Temurin) — for JLS (JAVA_LSP_HOST_JAVA), not the default
+if ! sdk list java 2>/dev/null | grep -q "25.0.3-tem.*installed"; then
+    echo "Installing Java 25 (Temurin)..."
+    sdk install java 25.0.3-tem </dev/null
+fi
+
+echo "SDKMAN, Java 21 (default), and Java 25 (JLS) ready."
+{{ end -}}
